@@ -22,14 +22,14 @@ exampleRouter.post('/adduser', async (req, res) => {
         });
 });
 
-exampleRouter.get('/getuser/:name', async (req, res) => {
-    console.log(req.params);
-    const name = req.params.name;
+exampleRouter.get('/getuser', async (req, res) => {
+    const name = req.query.name;
     User.findOne({name: name})
         .then( (data: any) => {
-            res.json(data);
+            res.json(data._id.toString());
         })
         .catch( (err: any) => {
             res.json({message: err});
         });
+    
 });

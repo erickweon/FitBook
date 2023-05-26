@@ -30,12 +30,11 @@ exports.exampleRouter.post('/adduser', (req, res) => __awaiter(void 0, void 0, v
         res.json({ message: err });
     });
 }));
-exports.exampleRouter.get('/getuser/:name', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.params);
-    const name = req.params.name;
+exports.exampleRouter.get('/getuser', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const name = req.query.name;
     exampleUser_1.User.findOne({ name: name })
         .then((data) => {
-        res.json(data);
+        res.json(data._id.toString());
     })
         .catch((err) => {
         res.json({ message: err });
