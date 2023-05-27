@@ -14,7 +14,7 @@ FitBook is a fitness social media app that combines fitness tracking with social
 #### iOS
 
 1. Make sure Xcode is installed on your system.
-2. Follow the React Native documentation for macOS and iOS to install any necessary dependencies.
+2. Follow the [React Native documentation](https://reactnative.dev/docs/environment-setup?os=macos&platform=ios) for macOS and iOS to install any necessary dependencies.
 3. Clone the repository.
 4. Run `yarn install` to install all the dependencies.
 5. For iOS, navigate to the `ios` folder and run `pod install` to install the required pod dependencies.
