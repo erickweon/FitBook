@@ -39,7 +39,7 @@ FitBook is a fitness social media app that combines fitness tracking with social
 
 ### Git Flow
 
-Yes, we follow the Git Flow workflow. We have a master branch and multiple sub-branches based on the specific parts of the project we are working on. We create pull requests for each feature or bug fix, and we also conduct testing before squashing and merging into the main/develop branches.
+We follow the Git Flow workflow. We have a master branch and multiple sub-branches based on the specific parts of the project we are working on. We create pull requests for each feature or bug fix, and we also conduct testing before squashing and merging into the main/develop branches.
 
 ### Branch Naming
 
