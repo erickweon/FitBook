@@ -23,7 +23,7 @@ FitBook is a fitness social media app that combines fitness tracking with social
 #### Android (Windows)
 
 1. Make sure Android Studio is installed on your system.
-2. Follow the React Native documentation for Windows and Android to install any necessary dependencies.
+2. Follow the [React Native documentation](https://reactnative.dev/docs/environment-setup?os=macos&platform=ios) for Windows and Android to install any necessary dependencies.
 3. Clone the repository.
 4. Run `yarn install` to install all the dependencies.
 5. For Android, ensure that developer mode is turned on for a physical device or have an Android Studio virtual device set up.
