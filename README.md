@@ -31,7 +31,7 @@ FitBook is a fitness social media app that combines fitness tracking with social
 
 ### Back-end
 
-- Make sure you have the latest version of Node.js installed.
+- Make sure you have the latest version of [Node.js](https://nodejs.org/en) installed.
 - Run `npm install` to install all the dependencies.
 - Run `npm run dev` to start a local server.
 
