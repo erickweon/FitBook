@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/CSCC012023/final-project-s23-algo-assassins">
-    <img src="doc/mockups/logo_readme_lightmode.png" src-dark="doc/mockups/logo_readme.png" alt="Logo" width="200" height="110">
+    <img src-dark="doc/mockups/logo_readme_lightmode.png" src="doc/mockups/logo_readme.png" alt="Logo" width="200" height="110">
   </a>
 </p>
 
