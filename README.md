@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://github.com/CSCC012023/final-project-s23-algo-assassins%22%3E">
-    <img src="FitBook_logo.png" alt="Logo" width="90" height="110">
+  <a href="https://github.com/CSCC012023/final-project-s23-algo-assassins">
+    <img src="doc/mockups/logo.png" alt="Logo" width="90" height="110">
   </a>
 </p>
                                                                   
