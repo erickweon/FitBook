@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="https://github.com/CSCC012023/final-project-s23-algo-assassins%22%3E">
+    <img src="FitBook_logo.png" alt="Logo" width="90" height="110">
+  </a>
+</p>
+                                                                  
 # FitBook
 
 FitBook is a fitness social media app that combines fitness tracking with social connectivity. The motivation behind this project is to address the common challenge of maintaining consistent motivation to work out. FitBook aims to motivate users to engage in regular physical activities by fostering a supportive community and promoting healthy competition. Users can share their workouts, repost fitness content, and track their personal progress.
