@@ -8,7 +8,7 @@ Fitbook is a novel fitness social media app, designed to integrate the benefits 
 
 ### **Who are your target users?**
 
-The primary target audience for Fitbook is fitness enthusiasts and individuals striving to maintain or improve their health, particularly within the age range of 16-50 years. This wide demographic is characterized by their active lifestyle or the desire to adopt one, and their frequent use of social media platforms for communication and sharing personal milestones. Fitbook meets the needs of this audience by providing a dedicated platform where they can share their fitness progress, access workout ideas, and engage in a supportive, fitness-focused community. The integrated workout tracking feature also addresses a common need among this demographic for a simple, user-friendly method to monitor their fitness progress over time.
+The primary target audience for Fitbook are fitness enthusiasts and individuals striving to maintain or improve their health, particularly within the age range of 16-50 years. This wide demographic is characterized by their active lifestyle or the desire to adopt one, and their frequent use of social media platforms for communication and sharing personal milestones. Fitbook meets the needs of this audience by providing a dedicated platform where they can share their fitness progress, access workout ideas, and engage in a supportive, fitness-focused community. The integrated workout tracking feature also addresses a common need among this demographic for a simple, user-friendly method to monitor their fitness progress over time.
 
 #### User 1:
 
