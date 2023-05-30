@@ -57,7 +57,7 @@ We also use GitHub issues for specific tasks when required.
 
 ### Pull Requests
 
-Pull requests are managed on GitHub and should be opened when merging code into the main branch of the application. The pull request should include a description of the changes made to the code and a brief explanation of why they were necessary. Each pull request must receive at least one review from a peer before it can be merged into the main branch.
+Pull requests are managed on GitHub and should be opened when merging code into the main branch of the application. The pull request should include a prefix of either `fix` or `feature`, and should comprise of a brief overview of the changes implemented in the PR. The PR should also include a description of the changes made to the code and a brief explanation of why they were necessary, as well as a link to the corresponding JIRA ticket(s). Each pull request must receive at least one review from a peer before it can be merged into the main branch.
 
 ---
 
