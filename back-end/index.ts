@@ -44,6 +44,12 @@ app.use(
   })
 );
 
+declare module "express-session" {
+  interface SessionData {
+    user_email: string;
+  }
+}
+
 // Routes
 app.use("/api/users", userRouter);
 

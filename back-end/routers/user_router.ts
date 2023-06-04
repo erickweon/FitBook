@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt';
 export const userRouter = Router();
 
 // Requires email, password, name of user
+// Signup the user but does not create session for user
 userRouter.post('/signup', async (req, res) => {
     if (req.body.password === undefined) {
         res.status(400).json({ message: "Password is required" });
@@ -40,6 +41,7 @@ userRouter.post('/signup', async (req, res) => {
 });
 
 // Requires email and password to identify
+// Signin the user and creates a session
 userRouter.post('/signin', async (req, res) => {
     if (req.body.password === undefined) {
         res.status(400).json({ message: "Password is required" });
@@ -59,9 +61,125 @@ userRouter.post('/signin', async (req, res) => {
         res.status(400).json({ message: "Password incorrect" });
         return;
     }
+    req.session.user_email = user.email;
     return res.json(user);
 });
 
-userRouter.get('/signout', async (req, res) => {
-    //For now, we don't need to do anything here since we are using sessions
+// Removes the current user from session
+userRouter.post('/signout', async (req, res) => {
+    req.session.user_email = ""
+    return res.json({ "signout": "true" })
+});
+
+// Current User logged in
+userRouter.get('/me', async (req, res) => {
+    const user = await User.findOne({ email: req.session.user_email });
+    if (user === null) {
+        res.status(400).json({ message: "User not found" });
+        return;
+    }
+    return res.json(user);
+});
+
+// Used to find a user by email
+userRouter.get('/find', async (req, res) => {
+    const email = req.query.email;
+    const user = await User.findOne({ email: email });
+    if (user === null) {
+        res.status(400).json({ message: "User not found" });
+        return;
+    }
+    return res.json(user);
+});
+
+// Used to delete a user by email
+userRouter.delete('/delete', async (req, res) => {
+    const email = req.query.email;
+    const user = await User.deleteOne({ email: email });
+    if (user === null) {
+        res.status(400).json({ message: "User not found" });
+        return;
+    }
+    return res.json(user);
+});
+
+// Used to update current user's age
+userRouter.patch('/update/age', async (req, res) => {
+    if (req.body.age === undefined) {
+        res.status(400).json({ message: "Age is required" });
+        return;
+    }
+    if (req.session.user_email === undefined) {
+        res.status(400).json({ message: "User not found" });
+        return;
+    }
+    const user = await User.findOne({ email: req.session.user_email });
+    if (user === null) {
+        res.status(400).json({ message: "User not found" });
+        return;
+    }
+    user.age = req.body.age;
+    user.save()
+        .then((data: any) => {
+            return res.json(data);
+        }
+        )
+        .catch((err: any) => {
+            return res.status(500).json({ message: err });
+        }
+        );
+});
+
+// Used to update current user's weight
+userRouter.patch('/update/weight', async (req, res) => {
+    if (req.body.weight === undefined) {
+        res.status(400).json({ message: "Weight is required" });
+        return;
+    }
+    if (req.session.user_email === undefined) {
+        res.status(400).json({ message: "User not found" });
+        return;
+    }
+    const user = await User.findOne({ email: req.session.user_email });
+    if (user === null) {
+        res.status(400).json({ message: "User not found" });
+        return;
+    }
+    user.weight = req.body.weight;
+    user.save()
+        .then((data: any) => {
+            return res.json(data);
+        }
+        )
+        .catch((err: any) => {
+            return res.status(500).json({ message: err });
+        }
+        );
+});
+
+// Used to update current user's height
+userRouter.patch('/update/height', async (req, res) => {
+    if (req.body.height === undefined) {
+        res.status(400).json({ message: "Height is required" });
+        return;
+    }
+    if (req.session.user_email === undefined) {
+        res.status(400).json({ message: "User not found" });
+        return;
+    }
+    const user = await User.findOne({ email: req.session.user_email });
+    if (user === null) {
+        res.status(400).json({ message: "User not found" });
+        return;
+    }
+    user.height = req.body.height;
+    user.save()
+        .then((data: any) => {
+            return res.json(data);
+        }
+        )
+        .catch((err: any) => {
+            return res.status(500).json({ message: err });
+        }
+        );
 });
