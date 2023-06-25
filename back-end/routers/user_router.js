@@ -16,7 +16,10 @@ exports.userRouter = void 0;
 const express_1 = require("express");
 const User_1 = require("../models/User");
 const bcrypt_1 = __importDefault(require("bcrypt"));
+const multer_1 = __importDefault(require("multer"));
+const path_1 = __importDefault(require("path"));
 exports.userRouter = (0, express_1.Router)();
+const upload = (0, multer_1.default)({ dest: "uploads/" });
 // Requires email, password, name of user
 // Signup the user but does not create session for user
 exports.userRouter.post('/signup', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -40,6 +43,7 @@ exports.userRouter.post('/signup', (req, res) => __awaiter(void 0, void 0, void 
         name: req.body.name,
         email: req.body.email,
         password: password,
+        img: { path: null, contentType: null },
         age: 0,
         weight: 0,
         height: 0,
@@ -183,3 +187,42 @@ exports.userRouter.patch('/update/height', (req, res) => __awaiter(void 0, void 
         return res.status(500).json({ message: err });
     });
 }));
+// Used to update user's profile picture by email
+exports.userRouter.post('/update/picture', upload.single("img"), (req, res) => {
+    const find = req.session.user_email;
+    if (find === undefined) {
+        res.status(400).json({ message: "User not found" });
+        return;
+    }
+    if (req.file === undefined) {
+        res.status(400).json({ message: "Image is required" });
+        return;
+    }
+    const user = User_1.User.findOne({ email: find });
+    user.then((data) => {
+        data.img = req.file;
+        data.save()
+            .then((data) => {
+            return res.json(data);
+        })
+            .catch((err) => {
+            return res.status(500).json({ message: err });
+        });
+    });
+});
+// get user profile picture by email
+exports.userRouter.get('/img', (req, res) => {
+    const email = req.query.email;
+    if (email === undefined) {
+        res.status(400).json({ message: "Email is required" });
+        return;
+    }
+    User_1.User.findOne({ email: email })
+        .then((u) => {
+        res.setHeader('Content-Type', u.img.mimetype);
+        res.sendFile(u.img.path, { root: path_1.default.resolve() });
+    })
+        .catch((err) => {
+        return res.status(500).json({ message: err });
+    });
+});
