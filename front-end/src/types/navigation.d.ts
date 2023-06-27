@@ -1,7 +1,8 @@
 import {Dictionary, Exercise} from './workout';
 
 export type RootStackParamList = {
-  Home: undefined;
+  HomeTabs: any;
+  HomeScreen: undefined;
   Details: undefined;
   BottomSheet: undefined;
   SignUp: undefined;
@@ -15,4 +16,19 @@ export type RootStackParamList = {
   };
   Profile: undefined;
   EditProfile: undefined;
+  LandingScreen: any;
+};
+
+export interface DummyScreenParams {
+  name: string;
+  backgroundColor: string;
+  nextScreen: string;
+  paddingBottom?: number;
+}
+
+export type MainTabsParams = {
+  Home: DummyScreenParams;
+  Likes: DummyScreenParams;
+  Search: DummyScreenParams;
+  Profile: DummyScreenParams;
 };
