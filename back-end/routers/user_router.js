@@ -21,7 +21,7 @@ const path_1 = __importDefault(require("path"));
 exports.userRouter = (0, express_1.Router)();
 const upload = (0, multer_1.default)({ dest: "uploads/" });
 // Requires email, password, name of user
-// Signup the user but does not create session for user
+// Signup the user and create session for user
 exports.userRouter.post('/signup', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (req.body.password === undefined) {
         res.status(400).json({ message: "Password is required" });
@@ -47,14 +47,18 @@ exports.userRouter.post('/signup', (req, res) => __awaiter(void 0, void 0, void 
         age: 0,
         weight: 0,
         height: 0,
+        followers: [],
+        following: [],
     });
+    req.session.user_email = user.email;
+    console.log("User session started for: " + req.session.user_email);
     user.save()
         .then((data) => {
-        return res.json(data);
-    })
+            return res.json(data);
+        })
         .catch((err) => {
-        return res.status(500).json({ message: err });
-    });
+            return res.status(500).json({ message: err });
+        });
 }));
 // Requires email and password to identify
 // Log in the user and creates a session
@@ -79,11 +83,13 @@ exports.userRouter.post('/login', (req, res) => __awaiter(void 0, void 0, void 0
         return;
     }
     req.session.user_email = user.email;
+    console.log("User session started for: " + req.session.user_email);
     return res.json(user);
 }));
 // Removes the current user from session
 exports.userRouter.post('/signout', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     req.session.user_email = "";
+    console.log("User session ended");
     return res.json({ "signout": "true" });
 }));
 // Current User logged in
@@ -133,11 +139,11 @@ exports.userRouter.patch('/update/age', (req, res) => __awaiter(void 0, void 0, 
     user.age = req.body.age;
     user.save()
         .then((data) => {
-        return res.json(data);
-    })
+            return res.json(data);
+        })
         .catch((err) => {
-        return res.status(500).json({ message: err });
-    });
+            return res.status(500).json({ message: err });
+        });
 }));
 // Used to update current user's weight
 exports.userRouter.patch('/update/weight', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -157,11 +163,11 @@ exports.userRouter.patch('/update/weight', (req, res) => __awaiter(void 0, void 
     user.weight = req.body.weight;
     user.save()
         .then((data) => {
-        return res.json(data);
-    })
+            return res.json(data);
+        })
         .catch((err) => {
-        return res.status(500).json({ message: err });
-    });
+            return res.status(500).json({ message: err });
+        });
 }));
 // Used to update current user's height
 exports.userRouter.patch('/update/height', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -181,11 +187,11 @@ exports.userRouter.patch('/update/height', (req, res) => __awaiter(void 0, void 
     user.height = req.body.height;
     user.save()
         .then((data) => {
-        return res.json(data);
-    })
+            return res.json(data);
+        })
         .catch((err) => {
-        return res.status(500).json({ message: err });
-    });
+            return res.status(500).json({ message: err });
+        });
 }));
 // Used to update user's profile picture by email
 exports.userRouter.post('/update/picture', upload.single("img"), (req, res) => {
@@ -203,11 +209,11 @@ exports.userRouter.post('/update/picture', upload.single("img"), (req, res) => {
         data.img = req.file;
         data.save()
             .then((data) => {
-            return res.json(data);
-        })
+                return res.json(data);
+            })
             .catch((err) => {
-            return res.status(500).json({ message: err });
-        });
+                return res.status(500).json({ message: err });
+            });
     });
 });
 // get user profile picture by email
@@ -219,10 +225,10 @@ exports.userRouter.get('/img', (req, res) => {
     }
     User_1.User.findOne({ email: email })
         .then((u) => {
-        res.setHeader('Content-Type', u.img.mimetype);
-        res.sendFile(u.img.path, { root: path_1.default.resolve() });
-    })
+            res.setHeader('Content-Type', u.img.mimetype);
+            res.sendFile(u.img.path, { root: path_1.default.resolve() });
+        })
         .catch((err) => {
-        return res.status(500).json({ message: err });
-    });
+            return res.status(500).json({ message: err });
+        });
 });

@@ -27,6 +27,12 @@ const UserSchema = new mongoose.Schema({
     height: {
         type: Number,
     },
+    followers: {
+        type: [String],
+    },
+    following: {
+        type: [String],
+    },
 });
 
 export const User = mongoose.model("User", UserSchema);
