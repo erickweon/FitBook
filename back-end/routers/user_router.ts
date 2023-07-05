@@ -1,11 +1,15 @@
 import { Router } from "express";
 import { User } from '../models/User';
 import bcrypt from 'bcrypt';
+import multer from 'multer';
+import path from 'path';
 
 export const userRouter = Router();
 
+const upload = multer({ dest: "uploads/" });
+
 // Requires email, password, name of user
-// Signup the user but does not create session for user
+// Signup the user and create session for user
 userRouter.post('/signup', async (req, res) => {
     if (req.body.password === undefined) {
         res.status(400).json({ message: "Password is required" });
@@ -27,10 +31,12 @@ userRouter.post('/signup', async (req, res) => {
         name: req.body.name,
         email: req.body.email,
         password: password,
+        img: { path: null, contentType: null },
         age: 0,
         weight: 0,
         height: 0,
     });
+    req.session.user_email = user.email;
     user.save()
         .then((data: any) => {
             return res.json(data);
@@ -179,6 +185,52 @@ userRouter.patch('/update/height', async (req, res) => {
             return res.json(data);
         }
         )
+        .catch((err: any) => {
+            return res.status(500).json({ message: err });
+        }
+        );
+});
+
+// Used to update user's profile picture by email
+userRouter.post('/update/picture', upload.single("img"), (req, res) => {
+    const find = req.session.user_email;
+    if (find === undefined) {
+        res.status(400).json({ message: "User not found" });
+        return;
+    }
+    if (req.file === undefined) {
+        res.status(400).json({ message: "Image is required" });
+        return;
+    }
+    const user = User.findOne({ email: find })
+    user.then((data: any) => {
+        data.img = req.file;
+        data.save()
+            .then((data: any) => {
+                return res.json(data);
+            }
+            )
+            .catch((err: any) => {
+                return res.status(500).json({ message: err });
+            }
+            );
+    })
+}
+);
+
+// get user profile picture by email
+userRouter.get('/img', (req, res) => {
+    const email = req.query.email;
+    if (email === undefined) {
+        res.status(400).json({ message: "Email is required" });
+        return;
+    }
+    User.findOne({ email: email })
+        .then((u: any) => {
+            res.setHeader('Content-Type', u.img.mimetype);
+            res.sendFile(u.img.path, { root: path.resolve() });
+
+        })
         .catch((err: any) => {
             return res.status(500).json({ message: err });
         }
