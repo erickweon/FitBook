@@ -32,12 +32,14 @@ userRouter.post('/signup', async (req, res) => {
         email: req.body.email,
         password: password,
         img: { path: null, contentType: null },
+        img: { path: null, contentType: null },
         age: 0,
         weight: 0,
         height: 0,
         followers: [],
         following: [],
     });
+    req.session.user_email = user.email;
     req.session.user_email = user.email;
     user.save()
         .then((data: any) => {
