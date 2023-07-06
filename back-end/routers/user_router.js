@@ -44,6 +44,7 @@ exports.userRouter.post('/signup', (req, res) => __awaiter(void 0, void 0, void 
         email: req.body.email,
         password: password,
         img: { path: null, contentType: null },
+        img: { path: null, contentType: null },
         age: 0,
         weight: 0,
         height: 0,
@@ -232,3 +233,67 @@ exports.userRouter.get('/img', (req, res) => {
             return res.status(500).json({ message: err });
         });
 });
+// Used to create a user follow connection
+// Followed email is the user that is being followed
+// Follower email is the user that is following
+exports.userRouter.patch('/create/follow', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const followed = req.body.followed_email;
+    const follower = req.body.follower_email;
+    if (followed === undefined || follower === undefined) {
+        res.status(400).json({ message: "Following email and Follower email are required" });
+        return;
+    }
+    const user1 = yield User_1.User.findOne({ email: followed });
+    const user2 = yield User_1.User.findOne({ email: follower });
+    if (user1 === null || user2 === null) {
+        res.status(400).json({ message: "A user is not found" });
+        return;
+    }
+    user1.followers.push(user2.email);
+    user2.following.push(user1.email);
+    user1.save()
+        .then((data) => {
+            user2.save()
+                .then((data) => {
+                    return res.json(data);
+                })
+                .catch((err) => {
+                    return res.status(500).json({ message: err });
+                });
+        })
+        .catch((err) => {
+            return res.status(500).json({ message: err });
+        });
+}));
+// Used to remove a user follow connection
+// Followed email is the user that is being followed currently
+// Follower email is the user that is following currently
+exports.userRouter.patch('/remove/follow', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const followed = req.body.followed_email;
+    const follower = req.body.follower_email;
+    if (followed === undefined || follower === undefined) {
+        res.status(400).json({ message: "Following email and Follower email are required" });
+        return;
+    }
+    const user1 = yield User_1.User.findOne({ email: followed });
+    const user2 = yield User_1.User.findOne({ email: follower });
+    if (user1 === null || user2 === null) {
+        res.status(400).json({ message: "A user is not found" });
+        return;
+    }
+    user1.followers = user1.followers.filter((email) => email !== user2.email);
+    user2.following = user2.following.filter((email) => email !== user1.email);
+    user1.save()
+        .then((data) => {
+            user2.save()
+                .then((data) => {
+                    return res.json(data);
+                })
+                .catch((err) => {
+                    return res.status(500).json({ message: err });
+                });
+        })
+        .catch((err) => {
+            return res.status(500).json({ message: err });
+        });
+}));
