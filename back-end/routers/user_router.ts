@@ -32,7 +32,6 @@ userRouter.post('/signup', async (req, res) => {
         email: req.body.email,
         password: password,
         img: { path: null, contentType: null },
-        img: { path: null, contentType: null },
         age: 0,
         weight: 0,
         height: 0,
