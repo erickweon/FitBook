@@ -90,7 +90,7 @@ _This entire section is mandatory._
  * Order the items from most to least important.
  * Feel free (but not obligated) to specify some/all tasks as user stories.
 
-Goals
+Goals:
 Home Page
 We will need to create a tab navigator for navigation between different screens on the Home page. This would include the User Feed Page, the Workout Page and the Profile Page according to the Figma design documents. 
 There will also need to be several components that will need to be created such as the following component where new users get a list of suggestions of followers. 
