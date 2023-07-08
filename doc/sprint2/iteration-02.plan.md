@@ -102,8 +102,6 @@ As our team follows the agile development method for our software development li
 - Logging Workouts
     - We will implement a back-end schema that keeps and maintains the data for each workout that a user logs, and implement the front-end in react native to be able to submit the workouts from user’s local machines to the database seamlessly.
 
-Tasks
-
 #### Artifacts for presenting project idea
 
 We will be building a sign up introduction page, which will come immediately after the initial sign up, that serves as a starting point for both new and existing users. This page will provide an overview of our application and its key features, and also optionally offer users to input their age, weight, and height to better track their progress.
