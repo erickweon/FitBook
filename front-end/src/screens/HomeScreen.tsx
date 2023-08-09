@@ -17,7 +17,6 @@ import WelcomeCard from '../components/welcomeCard/WelcomeCard';
 import PostCard from '../components/postCard/PostCard';
 import {RootStackParamList} from '../types/navigation';
 import SuggestFollowCard from '../components/suggestFollowCard/SuggestFollowCard';
-import {useIsFocused} from '@react-navigation/native';
 
 interface HomeScreenProps {
   navigation: any;
