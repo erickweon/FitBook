@@ -10,6 +10,7 @@ import {ProfileSetup} from '../screenComponents/ProfileHeader';
 import {useIsFocused} from '@react-navigation/native';
 import {getUser} from '../utils/user';
 import {User} from '../types/user';
+import ProgressChart from '../components/progressChart/ProgressChart';
 
 interface ProfileScreenProps {
   navigation: any;
@@ -43,7 +44,10 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({navigation}) => {
       <View style={styles.content}>
         <ProfileSetup />
       </View>
-      <View style={styles.bioContainer} />
+      <View style={styles.bioContainer}>
+        <Text style={[{marginTop: 12}]}>Progress Data</Text>
+        <ProgressChart></ProgressChart>
+      </View>
     </SafeAreaView>
   );
 };
