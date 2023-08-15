@@ -25,7 +25,7 @@ Planning Meetings Total Mark: 1 / 2
 - 1 mark = Meeting is documented, participants are not recorded or the majority has not participated, not enough analysis has been done
 - 0 marks = No meeting document submitted or the submitted document contains no relevant information
 
-Your Mark: \_
+Your Mark: 1
 
 Sprint Review Total Mark: 1 / 2
 
@@ -76,7 +76,9 @@ Daily Stand-ups Total Mark: 5 / 10
   - 1 mark = two or more stories in Jira Backlog not are prioritized in the order which matches the priority of their associated milestones]
   - 0 marks = the majority of stories in Jira Backlog appear to be not prioritized in the order which matches the priority of their associated milestones
 
-  Your Mark: 2
+  Your Mark: ~~2~~ 0
+
+> All were prioritized as Medium
 
 - Clearly Defined Acceptance Criteria (max 2 marks)
 
@@ -84,9 +86,11 @@ Daily Stand-ups Total Mark: 5 / 10
   - 1 mark = one or more Sprint 1 stories do not have clearly defined or testable acceptance criteria
   - 0 marks = the majority of the Sprint1 stories do not have clearly defined or testable acceptance criteria
 
-  Your Mark: 2
+  Your Mark: ~~2~~ 0
 
-User Stories Total Mark: 10 / 10
+> Missing AC
+
+User Stories Total Mark: ~~10~~ 6 / 10
 
 ---
 
@@ -138,7 +142,9 @@ Your Mark: 2
   - 1 mark = one or more commit messages do not begin with the ticket number of the task followed by a short description of commit changes
   - 0 marks = majority of commit message do not begin with the ticket number of the task followed by a short description of commit changes
 
-Your Mark: 2
+Your Mark: ~~2~~ 0
+
+> Most are missing ticket number 
 
 - Tasks Distribution (max 3 marks)
 
@@ -155,7 +161,9 @@ Your Mark: 2
   - 1 mark = at least one branch is not named after the associated single ticket number
   - 0 marks = most branch names are not named after the associated single ticket number
 
-  Your Mark: 2
+  Your Mark: ~~2~~ 1
+
+> Missing Ticket Number in Branch: FB-7, FB-18, FB-19
 
 - Burndown chart (max 2 marks)
 
@@ -170,7 +178,7 @@ Your Mark: 2
   - 1 mark = diagram present, but no critical path or explanations provided, or explanations are not adequate.
   - 0 marks = document not available or not containing a valid diagram
 
-Tracking on JIRA Total Mark: 24 / 24
+Tracking on JIRA Total Mark: ~~24~~ 21 / 24
 
 ---
 
@@ -262,4 +270,4 @@ Your Mark: 14 / 14
 
 ## Total Mark
 
-87 / 95
+~~87~~ 80 / 95 (remarked)
