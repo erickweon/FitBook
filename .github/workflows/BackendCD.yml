@@ -1,0 +1,32 @@
+name: BackendCD
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+  
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    
+    steps: 
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Log in to GitHub Container Registry
+        if: github.event_name == 'push'
+        run: |
+          echo "${{ secrets.ERIC_PAT }}" | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
+      
+      - name: Pull Docker Image
+        run: |
+          REPO_NAME=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          docker pull ghcr.io/$REPO_NAME/backend:latest
+    
+      - name: Run Container
+        run: |
+          REPO_NAME=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          docker run -d --name backend -p 3000:3000 ghcr.io/$REPO_NAME/backend:latest
+
+      - name: Simple Test
+        run: timeout 5s bash -c 'until echo > /dev/tcp/localhost/3000; do sleep 1; done'
